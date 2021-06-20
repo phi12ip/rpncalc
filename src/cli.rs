@@ -1,43 +1,60 @@
-use std::convert::TryInto;
 use crate::Token;
+use crate::Token::*;
+use std::convert::TryInto;
 
+/// Get input from the user to effect the stack
 pub fn get_input() -> String {
     use std::io::{self, Write};
 
+    // Print prompt and make sure it's flushed
     print!("> ");
     io::stdout().flush().unwrap();
+
+    // Read user input string
     let mut input = String::new();
     io::stdin()
         .read_line(&mut input)
         .expect("Failed to read line!");
+
     input
 }
 
+/// Parse a user input string into separate Tokens that can be applied to the stack
 pub fn parse_input(input: String) -> Vec<Token> {
+    // Create new token collection
     let mut tokens: Vec<Token> = Vec::new();
+
+    // Split the input string on spaces and pack into a collection
     let split: Vec<&str> = input.trim().split(' ').collect();
 
+    // For each segment, push the appropriate token
     for seg in split {
         match seg {
-            "-" => tokens.push(Token::Subtract),
-            "+" => tokens.push(Token::Add),
-            "*" => tokens.push(Token::Multiply),
-            "/" => tokens.push(Token::Divide),
+            // Regular operators
+            "/" => tokens.push(Divide),
+            "*" => tokens.push(Multiply),
+            "-" => tokens.push(Subtract),
+            "+" => tokens.push(Add),
 
-            "pow" | "power" => tokens.push(Token::Pow),
-            "root" => tokens.push(Token::Root),
+            // Special operators
+            "pow" | "power" => tokens.push(Pow),
+            "root" => tokens.push(Root),
 
-            "f" | "floor" => tokens.push(Token::Floor),
-            "c" | "ceiling" => tokens.push(Token::Ceiling),
+            // Rounding
+            "f" | "floor" => tokens.push(Floor),
+            "c" | "ceiling" => tokens.push(Ceiling),
 
-            "clear" => tokens.push(Token::ClearAll),
-            "d" | "duplicate" => tokens.push(Token::Duplicate),
-            "rm" | "remove" => tokens.push(Token::Pop),
+            // Stack management
+            "clear" => tokens.push(ClearAll),
+            "d" | "duplicate" | "e" | "enter" => tokens.push(Duplicate),
+            "rm" | "remove" => tokens.push(Pop),
 
-            "h" | "help" => tokens.push(Token::Help),
+            // CLI
+            "h" | "help" => tokens.push(Help),
+
             // Raw number
             _ => match seg.parse() {
-                Ok(n) => tokens.push(Token::Value(n)),
+                Ok(n) => tokens.push(Value(n)),
                 Err(e) => eprintln!("Not a number: {}\n", e),
             },
         }
