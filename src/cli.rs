@@ -70,6 +70,7 @@ pub fn parse_input(input: String) -> Vec<Token> {
     tokens
 }
 
+/// Print out usage to user
 pub fn print_help() {
     let message = "
     Help:
@@ -94,6 +95,7 @@ _____________________________________________
     println!("{}", message);
 }
 
+/// Print out the content of the stack to stdout
 pub fn print_stack(stack: &Vec<f64>) {
     clear_screen();
     if stack.len() > 0 {
@@ -115,6 +117,7 @@ pub fn print_stack(stack: &Vec<f64>) {
     }
 }
 
+/// Print welcome message to user
 pub fn welcome() {
     clear_screen();
     println!("Welcome to the Rust RPN Calculator!\n");
