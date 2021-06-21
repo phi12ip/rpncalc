@@ -37,13 +37,13 @@ Operations Currently Implemented:
 
 To implement:
 
-sin - Sin function
-cos - Cosine function
-tan - tangent function
-sqrt - square root
-inv - inverse function
-enter - enter input or duplicate stack if no input * ( satisfied by d )
-spc - space, create space between a multi-input string
-dot - the dot for decimals ( not needed in the cli )
+- sin - Sin function
+- cos - Cosine function
+- tan - tangent function
+- sqrt - square root
+- inv - inverse function
+- enter - enter input or duplicate stack if no input * ( satisfied by d )
+- spc - space, create space between a multi-input string
+- dot - the dot for decimals ( not needed in the cli )
 
 This will make a 4 x 6 grid of buttons needed to start the gui impl.
