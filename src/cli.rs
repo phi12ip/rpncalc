@@ -1,6 +1,10 @@
 use crate::Token;
 use crate::Token::*;
-use std::convert::TryInto;
+
+/// Print stdout char to clear screen on POSIX terminals
+fn clear_screen() {
+    print!("{}[2J", 27 as char);
+}
 
 /// Get input from the user to effect the stack
 pub fn get_input() -> String {
@@ -84,17 +88,27 @@ pub fn print_help() {
 }
 
 pub fn print_stack(stack: &Vec<f64>) {
+    clear_screen();
     if stack.len() > 0 {
-        let mut x: isize = (stack.len() - 1).try_into().unwrap();
-        for elem in stack.iter() {
-            println!("|[{}]: {}", x, elem);
-            x -= 1;
+        let mut pointer: usize = stack.len();
+        let mut max_stack = 8;
+
+        // Print empty stack spots
+        while max_stack > pointer {
+            println!("{:2}:      ", max_stack);
+            max_stack -= 1;
         }
-        print!("----------------------\n");
+
+        // Print stack elements
+        for element in stack.iter() {
+            println!("{:2}:      {:10}", pointer, element);
+            pointer -= 1;
+        }
+        print!(" __________________\n");
     }
 }
 
 pub fn welcome() {
-    print!("{}[2J", 27 as char);
+    clear_screen();
     println!("Welcome to the Rust RPN Calculator!\n");
 }
