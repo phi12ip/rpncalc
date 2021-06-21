@@ -1,20 +1,13 @@
 mod cli;
-use cli::get_input;
-use cli::parse_input;
-use cli::print_stack;
-use cli::welcome;
-
 mod calc;
-use calc::apply_tokens;
-use calc::stack::new_stack;
-use calc::token::Token;
 
 fn main() {
-    welcome();
-    let mut stack = new_stack();
+    cli::welcome();
+    let mut stack = calc::stack::Stack::new();
     loop {
-        let tokens = parse_input(get_input());
-        apply_tokens(tokens, &mut stack);
-        print_stack(&stack);
+        let user_input = cli::get_input();
+        let tokens = cli::parse_input(user_input);
+        stack.apply(tokens);
+        cli::print_stack(&stack);
     }
 }

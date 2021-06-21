@@ -1,5 +1,6 @@
-use crate::Token;
-use crate::Token::*;
+use crate::calc::stack::Stack;
+use crate::calc::token::Token;
+use crate::calc::token::Token::*;
 
 /// Print stdout char to clear screen on POSIX terminals
 fn clear_screen() {
@@ -96,7 +97,7 @@ _____________________________________________
 }
 
 /// Print out the content of the stack to stdout
-pub fn print_stack(stack: &Vec<f64>) {
+pub fn print_stack(stack: &Stack) {
     clear_screen();
     if stack.len() > 0 {
         let mut pointer: usize = stack.len();
