@@ -1,6 +1,8 @@
 # rpncalc
 
-A Reverse Polish Notation calculator modeled after the HP 50g.
+A Reverse Polish Notation calculator modeled after the HP 50g. 
+
+<img width="50px"  src="https://cdn.shopify.com/s/files/1/0424/3639/5165/products/HP1_1024x1024@2x.jpg" alt="HP 50g Calculator"/>
 
 ## Usage
 
@@ -13,6 +15,7 @@ cargo run
 To run the gui:
 
 TODO: gui not implemented yet
+
 
 ## Spec
 
