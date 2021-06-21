@@ -3,7 +3,10 @@ use crate::Token::*;
 
 /// Print stdout char to clear screen on POSIX terminals
 fn clear_screen() {
-    print!("{}[2J", 27 as char);
+    // print!("{}[2J", 27 as char);
+    for _ in 1..10 {
+        println!("");
+    }
 }
 
 /// Get input from the user to effect the stack
@@ -68,23 +71,27 @@ pub fn parse_input(input: String) -> Vec<Token> {
 }
 
 pub fn print_help() {
-    println!("Help:");
-    println!("--------------------------------------------");
-    println!("Any number gets put on the top of the stack, \nindicated by [0]\n");
-    println!("Op\t\tFunction");
-    println!("--\t\t--------");
-    println!("+\t\tAdd");
-    println!("-\t\tSubtract");
-    println!("*\t\tMultiply");
-    println!("/\t\tDivide");
-    println!("pow\t\tPow ([1]^[0])");
-    println!("root\t\tRoot ([1] root [0]) ");
-    println!("f\t\tFloor");
-    println!("c\t\tCeiling");
-    println!("d\t\tDuplicate");
-    println!("clear\t\tClearAll");
-    println!("rm\t\tPop");
-    println!("--------------------------------------------");
+    let message = "
+    Help:
+_____________________________________________
+ Any number gets put on the top of the stack.
+
+ Op           Function
+----         ----------
+ +              Add
+ -              Subtract
+ *              Multiply
+ /              Divide
+ pow            Power
+ root           top of stack is exponent
+ f              Floor
+ c              Ceiling
+ d              Duplicate
+ clear          Clear All
+ rm             Pop
+    ";
+
+    println!("{}", message);
 }
 
 pub fn print_stack(stack: &Vec<f64>) {
