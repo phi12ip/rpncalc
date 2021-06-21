@@ -1,6 +1,6 @@
-use crate::calc::stack::Stack;
-use crate::calc::token::Token;
-use crate::calc::token::Token::*;
+use crate::calc::Stack;
+use crate::calc::Token;
+use crate::calc::Token::*;
 
 /// Print stdout char to clear screen on POSIX terminals
 fn clear_screen() {

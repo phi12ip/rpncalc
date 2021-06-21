@@ -3,7 +3,7 @@ mod calc;
 
 fn main() {
     cli::welcome();
-    let mut stack = calc::stack::Stack::new();
+    let mut stack = calc::Stack::new();
     loop {
         let user_input = cli::get_input();
         let tokens = cli::parse_input(user_input);
