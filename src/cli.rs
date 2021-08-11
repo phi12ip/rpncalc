@@ -33,7 +33,8 @@ pub fn parse_input(input: String) -> Vec<Token> {
     let mut tokens: Vec<Token> = Vec::new();
 
     // Split the input string on spaces and pack into a collection
-    let split: Vec<&str> = input.trim().split(' ').collect();
+    let split: Vec<&str>;
+    split = input.trim().split(' ').collect();
 
     // For each segment, push the appropriate token
     for seg in split {
